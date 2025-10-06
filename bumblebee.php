@@ -4,7 +4,7 @@
  * Description: Batch mockup generator for WooCommerce product images (powered by Ravage). This plugin replaces the WooCommerce variation generation feature.
  * Plugin URI: https://github.com/emkowale/bumblebee
  * Author: Eric Kowalewski
- * Version: 1.2.10
+ * Version: 1.2.11
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author URI: https://erickowalewski.com/
@@ -19,6 +19,8 @@ if (!defined('ABSPATH')) exit;
 
 define('BUMBLEBEE_VERSION', '1.2.7');
 define('BUMBLEBEE_SLUG', 'bumblebee');
+
+require_once __DIR__ . '/includes/util/config.php';
 
 # --- Load textdomain (optional .mo in /languages) ---
 add_action('plugins_loaded', function(){
