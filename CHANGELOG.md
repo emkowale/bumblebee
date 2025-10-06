@@ -1,3 +1,19 @@
+## v1.2.15 - 2025-10-06
+
+### Other
+- chore: ignore release_notes tmp
+
+### Changed files
+- M	.gitignore
+- D	.release_notes.tmp
+- M	CHANGELOG.md
+- M	bumblebee.php
+- M	includes/admin.php
+- M	includes/ai_client.php
+- A	includes/settings.php
+- A	includes/util/config.php
+
+
 ## v1.2.14 - 2025-10-06
 
 ### Other
