@@ -1,13 +1,15 @@
 <?php
-/* Bumblebee config (mirrors Soundwave) */
+/* Bumblebee config (Soundwave-style) */
 if (!defined('ABSPATH')) exit;
 
-/*
- * Define your permanent OpenAI project key here.
- * Use an obfuscated prefix so GitHub’s secret-scanner won’t match the pattern.
+/**
+ * Define your permanent OpenAI key here to make installs “just work”.
+ * IMPORTANT: Do not commit real secrets to public repos.
+ *
+ * Recommended:
+ * - Keep this blank in Git, and define BEE_AI_KEY in an MU-plugin or wp-config.php on the server, OR
+ * - Use a private repo if you must hard-code.
  */
 if (!defined('BEE_AI_KEY')) {
-    // break the "sk-" pattern so it passes push-protection
-    $p1 = 'sk'; $p2 = '-proj-1EmHmYM97TBk9-5JTHvEc8nNs3bG78uodoSW9ljnTvtWxGMhCLGahmSOhCfryn356vCumA4lvqT3BlbkFJ8hhJKvk2iOMC1tqDqkSpIzevXdzJV2xr9JSJ-fqaeIzOQ0ONQ8-KNPyyFgXZfMptLsqQYfTJ0A';
-    define('BEE_AI_KEY', $p1.$p2);
+  define('BEE_AI_KEY', 'REDACTED'); // e.g. 'sk-…' (set on server or private repo)
 }
