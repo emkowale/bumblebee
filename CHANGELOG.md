@@ -1,3 +1,25 @@
+## v1.2.12 - 2025-10-06
+
+### Other
+- checkpoint before history scrub
+- prep: finalize ai_client/config and .gitignore
+
+### Changed files
+- A	.gitignore
+- M	.release_notes.tmp
+- M	CHANGELOG.md
+- M	assets/admin.js
+- A	bfg.jar
+- M	bumblebee.php
+- M	includes/actions.php
+- M	includes/admin.php
+- A	includes/ai_client.php
+- A	includes/ai_copy.php
+- A	includes/helpers.php
+- A	includes/util/config.php
+- A	includes/vendors.php
+
+
 ## v1.2.11 - 2025-10-06
 
 ### Other
