@@ -1,103 +1,92 @@
 <?php
-/*
- * File: includes/actions.php
- * Purpose: Backend actions for Bumblebee (keeps admin UI files untouched)
- * Mode: Single-variation debug — creates/uses FIRST Color × FIRST Print Location, generates mockup, assigns to variation.
- * Version: 1.2.8
- */
-
 if (!defined('ABSPATH')) exit;
-require_once __DIR__ . '/ravage/core.php';
+require_once __DIR__.'/helpers.php';
+require_once __DIR__.'/vendors.php';
+require_once __DIR__.'/ai_client.php';
+require_once __DIR__.'/ai_copy.php';
 
-/* Ensure our handler is the only one bound (admin.php may have registered earlier in dev) */
-add_action('init', function(){
-  if (function_exists('remove_all_actions')) {
-    remove_all_actions('wp_ajax_bee_generate_variations');
-  }
-  add_action('wp_ajax_bee_generate_variations', 'bee_action_generate_variations');
-});
+add_action('wp_ajax_bee_create_product','bee_action_create_product');
+add_action('wp_ajax_bee_test_ai','bee_action_test_ai');
 
-/* === Action: Generate ONE variation + mockup (debug) === */
-function bee_action_generate_variations(){
-  check_ajax_referer('bee_nonce','nonce');
-  if(!current_user_can('edit_products')) wp_send_json_error('no-permission');
+function bee_action_create_product(){
+  check_ajax_referer('bee_nonce','nonce'); if(!current_user_can('manage_woocommerce')) wp_send_json_error('no-permission');
+  $styles=(array)get_option('bumblebee_styles',[]); if(!bee_ai_key()||count($styles)<1) wp_send_json_error('ai-settings-required');
 
-  $pid = absint($_POST['product_id']??0);
-  $color_key = sanitize_text_field($_POST['color_key']??'');
-  $print_key = sanitize_text_field($_POST['print_key']??'');
-  $art_url = esc_url_raw($_POST['art_url']??'');
-  $bases = json_decode(stripslashes($_POST['bases']??'{}'), true) ?: [];
-  if(!$pid || !$color_key || !$print_key) wp_send_json_error('missing-params');
+  $company=bee_site_title(); $home=home_url('/'); $slug=bee_calc_site_slug($home);
+  $price=floatval($_POST['price']??0); $tax=(($_POST['taxable']??'yes')==='yes');
+  $img_url=esc_url_raw($_POST['image_url']??''); $img_id=absint($_POST['image_id']??0);
+  $art=esc_url_raw($_POST['art_url']??''); $colors=bee_csv($_POST['colors']??''); $sizes=bee_csv($_POST['sizes']??'');
+  $prints=bee_csv($_POST['prints']??''); $quality=sanitize_text_field($_POST['quality']??''); $override=esc_url_raw($_POST['vendor_url']??'');
+  if(!$price||!$img_url||!$art||!$colors||!$sizes||!$prints||!$quality) wp_send_json_error('missing-required-fields');
 
-  // Persist Original Art URL (exact key)
-  if ($art_url) update_post_meta($pid, 'orginal-art', $art_url);
+  $q=bee_parse_quality($quality); if(!$q['vendor']||!$q['style']) wp_send_json_error('quality-format-invalid');
+  $vf=bee_fetch_vendor($q['vendor'],$q['style'],$override);
+  if(!$vf['text']) wp_send_json_error(['code'=>'vendor-page-unavailable','guess_url'=>$vf['url']]);
+  $siteText=bee_fetch_site_text($home);
 
-  $attrs = get_post_meta($pid,'_product_attributes',true);
-  if (empty($attrs[$color_key]) || empty($attrs[$print_key])) wp_send_json_error('attributes-not-on-product');
+  global $wpdb; $hint=(int)$wpdb->get_var($wpdb->prepare(
+    "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA=%s AND TABLE_NAME=%s",$wpdb->dbname,$wpdb->prefix.'posts'
+  ));
 
-  $colors = bee_attr_values($pid,$color_key,!empty($attrs[$color_key]['is_taxonomy']));
-  $prints = bee_attr_values($pid,$print_key,!empty($attrs[$print_key]['is_taxonomy']));
-  if (!$colors || !$prints) wp_send_json_error('no-terms');
+  $copy=bee_ai_build_copy_from_vendor_site($company,$slug,$q['vendor'],$q['style'],$vf['text'],$siteText,$styles);
+  if(is_wp_error($copy)) wp_send_json_error('ai: '.$copy->get_error_message());
 
-  $first_color = reset($colors);
-  $first_print = reset($prints);
-  $product = wc_get_product($pid);
-  if (!$product || $product->get_type()!=='variable') wp_send_json_error('must-be-variable');
+  // Build title: "Site Title – [Women’s/Men’s/Unisex ]ItemType[ – Color (if exactly one)]"
+  $type=bee_infer_type_from_text($vf['text']);
+  if($type==='Product' && preg_match('/\b(xs|s|m|l|xl|2xl|3xl|4xl)\b/i',implode(',',$sizes))) $type='Apparel';
+  $gender=bee_detect_gender($vf['text']); $phrase=trim(($gender?($gender.' '):'').$type);
+  $colorSuffix=(count($colors)===1)?(' – '.trim($colors[0])):'';
+  $finalTitle=bee_unique_title($company.' – '.$phrase.$colorSuffix);
 
-  $ck='attribute_'.sanitize_title($color_key); $pk='attribute_'.sanitize_title($print_key);
-  $target_vid = 0;
-  foreach($product->get_children() as $vid){
-    $va = wc_get_product($vid); if(!$va) continue; $atts = $va->get_attributes();
-    if(($atts[$ck]??null)===$first_color && ($atts[$pk]??null)===$first_print){ $target_vid = $vid; break; }
-  }
-  if(!$target_vid){
-    $v = new WC_Product_Variation(); $v->set_parent_id($pid);
-    $v->set_attributes([$ck=>$first_color, $pk=>$first_print]); $v->save();
-    $target_vid = $v->get_id(); if(!$target_vid) wp_send_json_error('variation-create-failed');
-  }
+  $pid=wp_insert_post(['post_title'=>$finalTitle,'post_content'=>$copy['long_html'],'post_excerpt'=>$copy['short_html'],'post_status'=>'publish','post_type'=>'product'],true);
+  if(is_wp_error($pid)) wp_send_json_error('parent-create-failed');
 
-  // Base selection: specific location → front → back → product image
-  $front_id = absint($bases['front']??0); if(!$front_id) $front_id = get_post_thumbnail_id($pid);
-  $back_id  = absint($bases['back']??0);
-  $base_specific = absint($bases[$first_print]??0);
-  $use_base = $base_specific ?: ($first_print==='back' ? $back_id : $front_id);
-  if(!$use_base && $back_id) $use_base = $back_id;
-  if(!$use_base) $use_base = $front_id;
+  wp_set_object_terms($pid,'variable','product_type');
+  update_post_meta($pid,'_tax_status',$tax?'taxable':'none');
+  if($img_id) set_post_thumbnail($pid,$img_id); elseif($img_url && ($sid=bee_sideload($img_url,$pid))) set_post_thumbnail($pid,$sid);
+  if($art) update_post_meta($pid,'original-art',$art);
+  update_post_meta($pid,'_sku',$slug.'-'.($hint?:$pid));
 
-  $art_id = $art_url ? attachment_url_to_postid($art_url) : 0;
-  $hex = bee_guess_hex($first_color);
+  /* Brand: ALWAYS {site_slug} Merch on a proper Brand taxonomy */
+  $brand = bee_brand_for_site($home);
+  bee_assign_brand($pid, $brand);   // uses helper to ensure taxonomy + term
 
-  $args = [
-    'base_front_id'=>$use_base,'base_back_id'=>0,
-    'print_location'=>($first_print==='back'?'back':'front'),
-    'artwork_id'=>$art_id,'target_hex'=>$hex,
-    'scale_pct'=>100,'offset_x'=>0,'offset_y'=>0,'rotation_deg'=>0,'canvas_px'=>500,
-    'mask_opts'=>['fuzz_pct'=>10,'feather_px'=>1],
-    'filename_tokens'=>[
-      'productName'=>get_the_title($pid),
-      'color'=>$first_color,'printLocation'=>$first_print,'quality'=>'','wpUrl'=>home_url('/')
-    ]
+  /* Category: leave your existing category logic as-is */
+  bee_assign_default_cat($pid);
+
+  /* Attributes */
+  $attr=[
+    'color'=>['name'=>'Color','value'=>implode(' | ',$colors),'position'=>0,'is_visible'=>1,'is_variation'=>1,'is_taxonomy'=>0],
+    'size' =>['name'=>'Size','value'=>implode(' | ',$sizes),'position'=>1,'is_visible'=>1,'is_variation'=>1,'is_taxonomy'=>0],
+    'print_location'=>['name'=>'Print Location','value'=>implode(' | ',$prints),'position'=>2,'is_visible'=>1,'is_variation'=>0,'is_taxonomy'=>0],
+    'quality'=>['name'=>'Quality','value'=>$quality,'position'=>3,'is_visible'=>0,'is_variation'=>0,'is_taxonomy'=>0],
   ];
-  $res = ravage_generate($args);
-  if (!empty($res['attachment_id'])) update_post_meta($target_vid,'_thumbnail_id', intval($res['attachment_id']));
+  update_post_meta($pid,'_product_attributes',$attr);
 
-  wp_send_json_success([
-    'variation_id'=>$target_vid,
-    'color'=>$first_color, 'print'=>$first_print,
-    'with_image'=> !empty($res['attachment_id'])
-  ]);
+  /* Variations + SKUs */
+  $count=0; foreach($colors as $c){ foreach($sizes as $s){
+    $v=new WC_Product_Variation(); $v->set_parent_id($pid);
+    $v->set_attributes(['attribute_'.sanitize_title('Color')=>sanitize_title($c),'attribute_'.sanitize_title('Size')=>sanitize_title($s)]);
+    $v->set_regular_price($price); $v->set_tax_status($tax?'taxable':'none'); $v->save();
+    $vid=$v->get_id(); if($vid){ $v->set_sku($slug.'-'.($hint?:$pid).'-'.$vid); $v->save(); $count++; }
+  }}
+  wp_set_object_terms($pid,$copy['tags'],'product_tag',false);
+
+  wp_send_json_success(['product_id'=>$pid,'variation_count'=>$count,'edit_url'=>admin_url('post.php?post='.$pid.'&action=edit')]);
 }
 
-/* === Local helpers (duplicated small set; keeps admin.php untouched) === */
-function bee_attr_values($pid,$key,$is_tax){
-  if($is_tax){ return array_map('sanitize_title', wp_get_post_terms($pid,$key,['fields'=>'slugs'])); }
-  $attrs=get_post_meta($pid,'_product_attributes',true); $val=$attrs[$key]['value']??'';
-  $vals = (function_exists('wc_get_text_attributes')) ? wc_get_text_attributes($val) : preg_split('/\s*\|\s*/',$val);
-  return array_values(array_unique(array_map('sanitize_title', array_filter((array)$vals))));
+function bee_action_test_ai(){
+  check_ajax_referer('bee_nonce','nonce');
+  if(!current_user_can('manage_woocommerce')) wp_send_json_error('no-permission');
+  $ok=bee_ai_test_ping(); if(is_wp_error($ok)) wp_send_json_error('ai: '.$ok->get_error_message());
+  wp_send_json_success('OpenAI OK');
 }
-function bee_guess_hex($slug){
-  if(preg_match('/^#?[0-9a-f]{6}$/i',$slug)) return (strpos($slug,'#')===0?$slug:'#'.$slug);
-  $map=['white'=>'#ffffff','black'=>'#000000','red'=>'#c8102e','navy'=>'#003366','royal'=>'#0052cc','purple'=>'#4b2e83','gold'=>'#ffc20e','kelly'=>'#009e49','charcoal'=>'#36454f','heather'=>'#a7a8aa'];
-  foreach($map as $k=>$h){ if(stripos($slug,$k)!==false) return $h; } return '#888888';
-}
-    
+
+/* Utilities kept local to keep files small */
+function bee_csv($s){$a=array_filter(array_map('trim',preg_split('/\s*,\s*/',(string)$s)));return array_values(array_unique($a));}
+function bee_sideload($u,$p){require_once ABSPATH.'wp-admin/includes/file.php';require_once ABSPATH.'wp-admin/includes/media.php';require_once ABSPATH.'wp-admin/includes/image.php';$t=download_url($u);if(is_wp_error($t))return 0;$f=['name'=>basename(parse_url($u,PHP_URL_PATH)),'tmp_name'=>$t];$id=media_handle_sideload($f,$p);if(is_wp_error($id)){@unlink($f['tmp_name']);return 0;}return $id;}
+function bee_unique_title($b){global $wpdb;$t=$b;$i=1;while($wpdb->get_var($wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE post_type='product' AND post_status!='trash' AND post_title=%s LIMIT 1",$t))){$i++;$t=$b.' #'.$i;if($i>99)break;}return $t;}
+function bee_assign_default_cat($pid){$c=get_terms(['taxonomy'=>'product_cat','hide_empty'=>false]);if(is_array($c)&&count($c)===1){wp_set_object_terms($pid,$c[0]->term_id,'product_cat');return;}$u=get_term_by('slug','uncategorized','product_cat');if($u)wp_set_object_terms($pid,$u->term_id,'product_cat');}
+
+/* Gender detector for title phrasing */
+function bee_detect_gender($t){$s=strtolower($t); if(preg_match('/\b(women|ladies|women\'?s|misses)\b/',$s)) return "Women’s"; if(preg_match('/\b(men|mens|men\'?s)\b/',$s)) return "Men’s"; if(str_contains($s,'unisex')) return 'Unisex'; return '';}
