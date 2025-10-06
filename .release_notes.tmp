@@ -1,4 +1,17 @@
-## v1.2.10 - 2025-10-06
+## v1.2.11 - 2025-10-06
 
 ### Other
 - 
+
+### Changed files
+- M	.release_notes.tmp
+- M	CHANGELOG.md
+- M	assets/admin.js
+- M	bumblebee.php
+- M	includes/actions.php
+- M	includes/admin.php
+- A	includes/ai_client.php
+- A	includes/ai_copy.php
+- A	includes/helpers.php
+- A	includes/secret_key.php
+- A	includes/vendors.php
