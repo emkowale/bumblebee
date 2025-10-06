@@ -1,3 +1,14 @@
+## v1.2.14 - 2025-10-06
+
+### Other
+- 
+
+### Changed files
+- M	.release_notes.tmp
+- M	CHANGELOG.md
+- M	bumblebee.php
+
+
 ## v1.2.13 - 2025-10-06
 
 ### Other
