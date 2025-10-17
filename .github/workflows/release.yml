@@ -1,0 +1,48 @@
+name: Build & Release Bumblebee
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read version from bumblebee.php
+        id: ver
+        shell: bash
+        run: |
+          PHPVER=$(grep -E "^[[:space:]]*Version:[[:space:]]*[0-9]+\.[0-9]+\.[0-9]+" -m1 bumblebee.php | sed -E 's/.*Version:[[:space:]]*([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          if [ -z "$PHPVER" ]; then
+            echo "Could not parse Version from bumblebee.php"; exit 1
+          fi
+          echo "phpver=$PHPVER" >> "$GITHUB_OUTPUT"
+
+      - name: Verify tag matches plugin version
+        shell: bash
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          if [ "v${{ steps.ver.outputs.phpver }}" != "$TAG" ]; then
+            echo "Tag ($TAG) must match Version in bumblebee.php (v${{ steps.ver.outputs.phpver }})"
+            exit 1
+          fi
+
+      - name: Create release zip
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          # Ensure the folder name in the zip is "bumblebee/"
+          mkdir -p package/bumblebee
+          rsync -a --delete             --exclude '.git'             --exclude '.github'             --exclude 'node_modules'             --exclude 'vendor'             --exclude '*.zip'             --exclude 'tests'             ./ package/bumblebee/
+          (cd package && zip -r "../artifacts/bumblebee-v${{ steps.ver.outputs.phpver }}.zip" bumblebee >/dev/null)
+          ls -lh artifacts
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*.zip
+          generate_release_notes: true
