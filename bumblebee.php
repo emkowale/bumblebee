@@ -5,7 +5,7 @@ Plugin Name: Bumblebee
 Plugin URI: https://github.com/emkowale/bumblebee
 Description: Product builder for WooCommerce with Create a Product flow and Settings (AI toggle, Orphaned Media Sweep). Media is converted to WebP and renamed with Company Name + Product Title.
 Author: Eric Kowalewski
-Version: 1.2.100
+Version: 1.2.101
 Requires at least: 6.0
 Requires PHP: 7.4
 Update URI: https://github.com/emkowale/bumblebee
