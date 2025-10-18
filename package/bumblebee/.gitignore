@@ -1,0 +1,38 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editors/IDEs
+.vscode/
+.idea/
+*.iml
+
+# Node / PHP build artifacts
+node_modules/
+vendor/
+composer.lock
+package-lock.json
+pnpm-lock.yaml
+.yarn/
+.yarnrc*
+dist/
+build/
+coverage/
+
+# Logs / caches
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache/
+.cache-loader/
+.tmp/
+
+# Zips / releases
+*.zip
+*.tar.gz
+
+# WordPress cruft you might copy locally
+wp-content/
+!wp-content/plugins/
+wp-config.php
