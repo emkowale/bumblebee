@@ -11,7 +11,7 @@ Update URI: https://github.com/emkowale/bumblebee
 GitHub Plugin URI: emkowale/bumblebee
 */
 if ( ! defined( 'ABSPATH' ) ) exit;
-define('BUMBLEBEE_VERSION','1.2.99');
+	.2.99');
 define('BUMBLEBEE_PATH', plugin_dir_path(__FILE__));
 define('BUMBLEBEE_URL',  plugin_dir_url(__FILE__));
 define('BUMBLEBEE_SLUG', plugin_basename(__FILE__));
