@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Bumblebee
- * Version: 1.3.0
+ * Version: 1.3.1
  * Plugin URI: https://github.com/emkowale/bumblebee
  * Description: Product builder for WooCommerce with Create a Product flow and Settings (AI toggle, Orphaned Media Sweep). Media is converted to WebP and renamed with Company Name + Product Title.
  * Author: Eric Kowalewski
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 
-define('BUMBLEBEE_VERSION', '1.3.0');
+define('BUMBLEBEE_VERSION', '1.3.1');
 define('BUMBLEBEE_PATH', plugin_dir_path(__FILE__));
 define('BUMBLEBEE_URL',  plugin_dir_url(__FILE__));
 define('BUMBLEBEE_SLUG', plugin_basename(__FILE__));
@@ -71,7 +71,7 @@ add_filter('plugins_api', function($res, $action, $args){
   $info->author = '<a href="https://github.com/emkowale">Eric Kowalewski</a>';
   $info->homepage = 'https://github.com/emkowale/bumblebee';
   $info->requires = '6.0';
-  $info->tested = '6.6';
+  $info->tested = '6.8.3';
   $info->sections = [ 'description' => 'Product builder for WooCommerce.' ];
   return $info;
 }, 10, 3);
