@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.3] - 2025-11-24
+
+### Changes
+* Re-establish main from live server (f5ea19a)
+
+
 ## [1.4.1] - 2025-11-23
 
 ### Changes
