@@ -1,0 +1,39 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+function bumblebee_enqueue_create_assets(){
+  wp_enqueue_media();
+  wp_enqueue_style('bumblebee-create', BUMBLEBEE_URL.'assets/create.css',[],BUMBLEBEE_VERSION);
+  wp_add_inline_style('bumblebee-create', '
+    #bb-print-locations .bb-location-check{ display:flex; align-items:center; gap:8px; margin:6px 0; }
+    #bb-print-locations .bb-location-check > span:first-of-type{ min-width:140px; display:inline-block; }
+    #bb-print-locations .bb-upload-original{ margin-left:8px; }
+    #bb-print-locations .bb-location-check.bb-missing{ outline:1px solid #d93025; border-radius:6px; }
+  ');
+
+  wp_register_script('bumblebee-create-pickers', BUMBLEBEE_URL.'assets/create.picker.js', ['jquery','media-editor'], BUMBLEBEE_VERSION, true);
+  wp_register_script('bumblebee-create-locations', BUMBLEBEE_URL.'assets/create.locations.js', ['jquery','media-editor'], BUMBLEBEE_VERSION, true);
+  wp_register_script('bumblebee-create-form', BUMBLEBEE_URL.'assets/create.form.js', ['jquery','bumblebee-create-locations','bumblebee-create-pickers'], BUMBLEBEE_VERSION, true);
+
+  wp_localize_script('bumblebee-create-form','BumblebeeCreate',[
+    'ajaxurl'=>admin_url('admin-ajax.php'),
+    'nonce'=>wp_create_nonce('bb_create_product'),
+    'required'=>[
+      'price'=>'Please enter a valid price (greater than 0).',
+      'title'=>'Please enter a product title.',
+      'image'=>'Please select a product image.',
+      'colorcount'=>'Select how many colors.',
+      'colorname'=>'Enter a name for Color %d.',
+      'sizes'=>'Enter at least one size.',
+      'vendorcount'=>'Select how many vendors.',
+      'vendorname'=>'Enter a name for Vendor %d.',
+      'vendoritem'=>'Enter an item number for Vendor %d.',
+      'production'=>'Choose a Production method.',
+      'printloc'=>'Select at least one Print Location.'
+    ]
+  ]);
+
+  wp_enqueue_script('bumblebee-create-pickers');
+  wp_enqueue_script('bumblebee-create-locations');
+  wp_enqueue_script('bumblebee-create-form');
+}
