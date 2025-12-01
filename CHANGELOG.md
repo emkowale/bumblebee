@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.5] - 2025-12-01
+
+### Changes
+* chore(release): v1.4.4 (63cc347)
+
+
 ## [1.4.4] - 2025-12-01
 
 ### Changes
