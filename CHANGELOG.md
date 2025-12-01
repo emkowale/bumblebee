@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.4] - 2025-12-01
+
+### Changes
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
 ## [1.4.3] - 2025-11-24
 
 ### Changes
