@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.6] - 2025-12-12
+
+### Changes
+* chore(release): v1.4.5 (db31004)
+
+
 ## [1.4.5] - 2025-12-01
 
 ### Changes

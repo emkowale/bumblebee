@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Bumblebee
- * Version: 1.4.5
+ * Version: 1.4.6
  * Plugin URI: https://github.com/emkowale/bumblebee
  * Description: Product builder for WooCommerce with Create a Product flow and Settings (AI toggle, Orphaned Media Sweep). Media is converted to WebP and renamed with Company Name + Product Title.
  * Author: Eric Kowalewski
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 
-define('BUMBLEBEE_VERSION', '1.4.5');
+define('BUMBLEBEE_VERSION', '1.4.6');
 define('BUMBLEBEE_PATH', plugin_dir_path(__FILE__));
 define('BUMBLEBEE_URL',  plugin_dir_url(__FILE__));
 define('BUMBLEBEE_SLUG', plugin_basename(__FILE__));
@@ -84,3 +84,13 @@ require_once BUMBLEBEE_PATH.'includes/create.php';
 require_once BUMBLEBEE_PATH.'includes/ai.php';
 require_once BUMBLEBEE_PATH.'includes/create_handler.php';
 require_once BUMBLEBEE_PATH.'includes/soundwave.php';
+
+if (is_admin()) {
+  $settings_url = admin_url('admin.php?page=bumblebee-settings');
+  $callback = function($links) use ($settings_url){
+    array_unshift($links, '<a href="'.esc_url($settings_url).'">Settings</a>');
+    return $links;
+  };
+  add_filter('plugin_action_links_' . plugin_basename(__FILE__), $callback);
+  add_filter('network_admin_plugin_action_links_' . plugin_basename(__FILE__), $callback);
+}
