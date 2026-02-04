@@ -1,0 +1,31 @@
+.bb-bumblebee-panel .bb-location-check{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+.bb-bumblebee-panel .bb-print-locations{display:flex;flex-direction:column;gap:4px}
+.bb-bumblebee-panel .bb-location-name{min-width:120px}
+.bb-bumblebee-panel .bb-art-tools{display:none;align-items:center;gap:8px}
+.bb-bumblebee-panel .bb-location-check.is-checked .bb-art-tools{display:inline-flex}
+.bb-bumblebee-panel .bb-art-preview{
+  display:inline-flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  width:100px;
+  height:auto;
+  border:1px solid #dcdcde;
+  border-radius:4px;
+  overflow:visible;
+  text-decoration:none;
+  background-color:#f2f2f2;
+  background-image:
+    linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+    linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+    linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+  background-size:8px 8px;
+  background-position:0 0, 0 4px, 4px -4px, -4px 0;
+}
+.bb-bumblebee-panel .bb-art-thumb{width:100px;height:auto;display:block}
+.bb-bumblebee-panel .bb-art-filename{color:#646970;font-size:12px;text-decoration:none}
+.bb-bumblebee-panel .bb-art-error{color:#a40000;font-size:12px;margin-left:8px}
+.bb-bumblebee-panel .form-field label{position:relative}
+.bb-tooltip{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:6px;border-radius:50%;background:#f1f1f1;color:#555;font-size:12px;line-height:1;cursor:help;position:relative;top:-1px}
+.bb-tooltip__text{display:none;position:absolute;z-index:10;max-width:280px;padding:8px 10px;border-radius:6px;background:#1d2327;color:#fff;font-size:12px;line-height:1.4;box-shadow:0 6px 16px rgba(0,0,0,.2);margin-top:6px}
+.bb-tooltip:hover + .bb-tooltip__text{display:block}
