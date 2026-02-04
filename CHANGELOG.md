@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.5.4] - 2026-02-04
+
+### Changes
+* chore(release): v1.5.3 (df45a81)
+* chore(release): v1.4.6 (83bc386)
+* chore(release): v1.4.5 (db31004)
+* chore(release): v1.4.4 (63cc347)
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
 ## [1.5.3] - 2026-02-04
 
 ### Changes

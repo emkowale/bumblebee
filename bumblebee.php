@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Bumblebee
- * Version: 1.5.3
+ * Version: 1.5.4
  * Plugin URI: https://github.com/emkowale/bumblebee
  * Description: Product builder for WooCommerce with Create a Product flow and Settings (AI toggle, Orphaned Media Sweep). Media is converted to WebP and renamed with Company Name + Product Title.
  * Author: Eric Kowalewski
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 
-define('BUMBLEBEE_VERSION', '1.5.3');
+define('BUMBLEBEE_VERSION', '1.5.4');
 define('BUMBLEBEE_PATH', plugin_dir_path(__FILE__));
 define('BUMBLEBEE_URL',  plugin_dir_url(__FILE__));
 define('BUMBLEBEE_SLUG', plugin_basename(__FILE__));
@@ -34,8 +34,17 @@ function bumblebee_site_slug_from_subdomain(){
 
 # --- Lightweight GitHub Updater (checks releases for emkowale/bumblebee) ---
 add_filter('pre_set_site_transient_update_plugins', function($transient){
+  if ( !is_object($transient) ) return $transient;
+  if (!isset($transient->response) || !is_array($transient->response)) $transient->response = [];
+  if (!isset($transient->no_update) || !is_array($transient->no_update)) $transient->no_update = [];
+
+  // Always clear stale update entries first.
+  unset($transient->response[BUMBLEBEE_SLUG]);
+
+  $current = isset($transient->checked[BUMBLEBEE_SLUG]) ? (string) $transient->checked[BUMBLEBEE_SLUG] : BUMBLEBEE_VERSION;
+  if ($current === '') $current = BUMBLEBEE_VERSION;
   if ( empty($transient->checked) ) return $transient;
-  $current = BUMBLEBEE_VERSION;
+
   $api = wp_remote_get('https://api.github.com/repos/emkowale/bumblebee/releases/latest', [
     'headers' => ['User-Agent' => 'WordPress; Bumblebee Updater'],
     'timeout' => 10,
@@ -44,7 +53,16 @@ add_filter('pre_set_site_transient_update_plugins', function($transient){
   $data = json_decode(wp_remote_retrieve_body($api), true);
   if (!is_array($data) || empty($data['tag_name'])) return $transient;
   $tag = ltrim($data['tag_name'], 'vV');
-  if (version_compare($tag, $current, '<=')) return $transient;
+  if (version_compare($tag, $current, '<=')) {
+    $obj = new stdClass();
+    $obj->slug = 'bumblebee';
+    $obj->plugin = BUMBLEBEE_SLUG;
+    $obj->new_version = $current;
+    $obj->url = 'https://github.com/emkowale/bumblebee';
+    $obj->package = '';
+    $transient->no_update[BUMBLEBEE_SLUG] = $obj;
+    return $transient;
+  }
   // Prefer an asset named like bumblebee-vX.Y.Z.zip; fall back to zipball_url
   $package = '';
   if (!empty($data['assets'])) {
@@ -62,7 +80,19 @@ add_filter('pre_set_site_transient_update_plugins', function($transient){
   $obj->new_version = $tag;
   $obj->url = 'https://github.com/emkowale/bumblebee';
   $obj->package = $package;
+  unset($transient->no_update[BUMBLEBEE_SLUG]);
   $transient->response[BUMBLEBEE_SLUG] = $obj;
+  return $transient;
+});
+
+// Safety net: if a stale update row somehow persists, suppress it when versions match.
+add_filter('site_transient_update_plugins', function($transient){
+  if (!is_object($transient) || !isset($transient->response[BUMBLEBEE_SLUG])) return $transient;
+  $item = $transient->response[BUMBLEBEE_SLUG];
+  $incoming = (is_object($item) && isset($item->new_version)) ? (string) $item->new_version : '';
+  if ($incoming !== '' && version_compare($incoming, BUMBLEBEE_VERSION, '<=')) {
+    unset($transient->response[BUMBLEBEE_SLUG]);
+  }
   return $transient;
 });
 
