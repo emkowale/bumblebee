@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.3] - 2026-02-04
+
+### Changes
+* chore(release): v1.5.2 (43ea6f7)
+
+
 ## [1.5.2] - 2026-02-04
 
 ### Changes
