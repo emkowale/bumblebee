@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.7] - 2026-02-20
+
+### Changes
+* chore(release): v1.5.5 (788c3af)
+
+
+## [1.5.6] - 2026-02-20
+
+### Changes
+* Release generated from local working tree
+
+
 ## [1.5.5] - 2026-02-05
 
 ### Changes
