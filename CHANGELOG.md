@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.9] - 2026-02-26
+
+### Changes
+* chore(release): v1.5.8 (9f01826)
+
+
 ## [1.5.8] - 2026-02-26
 
 ### Changes
