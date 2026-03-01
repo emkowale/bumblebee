@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.12] - 2026-03-01
+
+### Changes
+* chore(release): v1.5.10 (cf5052f)
+
+
 ## [1.5.10] - 2026-02-26
 
 ### Changes
