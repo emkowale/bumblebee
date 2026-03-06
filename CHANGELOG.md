@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.23] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.22 (6348ff2)
+
+
 ## [1.5.22] - 2026-03-06
 
 ### Changes
