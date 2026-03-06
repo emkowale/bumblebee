@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.19] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.18 (fca15e4)
+
+
 ## [1.5.18] - 2026-03-06
 
 ### Changes
