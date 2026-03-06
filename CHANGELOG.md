@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.18] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.17 (db5b08c)
+
+
 ## [1.5.17] - 2026-03-06
 
 ### Changes
