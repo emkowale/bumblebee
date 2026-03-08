@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.25] - 2026-03-07
+
+### Changes
+* chore(release): v1.5.24 (eaacfcf)
+
+
 ## [1.5.24] - 2026-03-06
 
 ### Changes
