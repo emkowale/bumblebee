@@ -1,0 +1,215 @@
+# Changelog
+
+## [1.5.27] - 2026-03-22
+
+### Changes
+* Release generated from local working tree
+
+
+## [1.5.26] - 2026-03-17
+
+### Changes
+* chore(release): v1.5.25 (b54c205)
+
+
+## [1.5.25] - 2026-03-07
+
+### Changes
+* chore(release): v1.5.24 (eaacfcf)
+
+
+## [1.5.24] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.23 (31d21b9)
+
+
+## [1.5.23] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.22 (6348ff2)
+
+
+## [1.5.22] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.21 (28e518b)
+
+
+## [1.5.21] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.20 (562d9d5)
+
+
+## [1.5.20] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.19 (a0e389c)
+
+
+## [1.5.19] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.18 (fca15e4)
+
+
+## [1.5.18] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.17 (db5b08c)
+
+
+## [1.5.17] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.16 (e60d166)
+
+
+## [1.5.16] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.15 (8723cc5)
+
+
+## [1.5.15] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.14 (2174499)
+
+
+## [1.5.14] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.13 (8a0e6ea)
+
+
+## [1.5.13] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.12 (38b4b91)
+
+
+## [1.5.12] - 2026-03-01
+
+### Changes
+* chore(release): v1.5.10 (cf5052f)
+
+
+## [1.5.10] - 2026-02-26
+
+### Changes
+* chore(release): v1.5.9 (76ee00e)
+
+
+## [1.5.9] - 2026-02-26
+
+### Changes
+* chore(release): v1.5.8 (9f01826)
+
+
+## [1.5.8] - 2026-02-26
+
+### Changes
+* chore(release): v1.5.7 (03cc125)
+
+
+## [1.5.7] - 2026-02-20
+
+### Changes
+* chore(release): v1.5.5 (788c3af)
+
+
+## [1.5.6] - 2026-02-20
+
+### Changes
+* Release generated from local working tree
+
+
+## [1.5.5] - 2026-02-05
+
+### Changes
+* chore(release): v1.5.4 (455ba1d)
+
+
+## [1.5.4] - 2026-02-04
+
+### Changes
+* chore(release): v1.5.3 (df45a81)
+* chore(release): v1.4.6 (83bc386)
+* chore(release): v1.4.5 (db31004)
+* chore(release): v1.4.4 (63cc347)
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
+## [1.5.3] - 2026-02-04
+
+### Changes
+* chore(release): v1.5.2 (43ea6f7)
+
+
+## [1.5.2] - 2026-02-04
+
+### Changes
+* Internal updates
+
+
+## [1.5.1] - 2026-02-03
+
+### Changes
+* Manual release (git unavailable)
+
+
+## [1.5.0] - 2026-02-03
+
+### Changes
+* Manual release (git unavailable)
+
+
+## [1.4.7] - 2026-02-02
+
+### Changes
+* Manual release (git unavailable)
+
+
+## [1.4.6] - 2025-12-12
+
+### Changes
+* chore(release): v1.4.5 (db31004)
+
+
+## [1.4.5] - 2025-12-01
+
+### Changes
+* chore(release): v1.4.4 (63cc347)
+
+
+## [1.4.4] - 2025-12-01
+
+### Changes
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
+## [1.4.3] - 2025-11-24
+
+### Changes
+* Re-establish main from live server (f5ea19a)
+
+
+## [1.4.1] - 2025-11-23
+
+### Changes
+* Internal updates
+
+
+## [1.3.1] - 2025-10-23
+
+### Changes
+* chore(release): v1.3.0 (caa5bf9)
+
+## 1.2.99 - 2025-10-17
+- Inline validation for **Price** (no JS alerts; consistent with other fields).
+- README expanded with updater, build, and feature documentation.
+- Added **GitHub updater** that checks `emkowale/bumblebee` releases and provides admin updates.
