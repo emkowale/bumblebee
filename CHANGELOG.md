@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.5.29] - 2026-03-30
+
+### Changes
+* chore(release): v1.5.28 (a9d7316)
+* chore(release): v1.5.26 (780166f)
+* chore(release): v1.5.25 (b54c205)
+* chore(release): v1.5.24 (eaacfcf)
+* chore(release): v1.5.23 (31d21b9)
+* chore(release): v1.5.22 (6348ff2)
+* chore(release): v1.5.21 (28e518b)
+* chore(release): v1.5.20 (562d9d5)
+* chore(release): v1.5.19 (a0e389c)
+* chore(release): v1.5.18 (fca15e4)
+* chore(release): v1.5.17 (db5b08c)
+* chore(release): v1.5.16 (e60d166)
+* chore(release): v1.5.15 (8723cc5)
+* chore(release): v1.5.14 (2174499)
+* chore(release): v1.5.13 (8a0e6ea)
+* chore(release): v1.5.12 (38b4b91)
+* chore(release): v1.5.10 (cf5052f)
+* chore(release): v1.5.9 (76ee00e)
+* chore(release): v1.5.8 (9f01826)
+* chore(release): v1.5.7 (03cc125)
+* chore(release): v1.5.5 (788c3af)
+* chore(release): v1.5.4 (455ba1d)
+* chore(release): v1.5.3 (df45a81)
+* chore(release): v1.5.2 (43ea6f7)
+* chore(release): v1.4.6 (83bc386)
+* chore(release): v1.4.5 (db31004)
+* chore(release): v1.4.4 (63cc347)
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
 ## [1.5.28] - 2026-03-22
 
 ### Changes
