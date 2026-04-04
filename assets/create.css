@@ -1,0 +1,104 @@
+.bb-error{outline:2px solid #d63638}
+.bb-inline-error{color:#d63638;font-size:12px;display:none;margin-top:4px}
+.bb-inline-error.show{display:block}
+.bb-create-version{display:block;margin-top:4px;color:#9aa0a6;font-weight:400;font-size:14px}
+.bb-ai-fail-actions{margin-top:8px}
+.bb-ai-fail-actions .button + .button{margin-left:6px}
+#bb-ai-reason{font-weight:600}
+.bb-tooltip{display:inline-block;margin-left:6px;color:#646970;cursor:help;vertical-align:text-top}
+.bb-tooltip:hover,.bb-tooltip:focus{color:#1d2327}
+.bb-scrubs{max-width:520px}
+.bb-scrubs__toggle{display:inline-flex;gap:8px;flex-wrap:wrap}
+.bb-scrubs__toggle-option{position:relative}
+.bb-scrubs__toggle-input{position:absolute;opacity:0;pointer-events:none}
+.bb-scrubs__toggle-label{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:64px;
+  padding:8px 14px;
+  border:1px solid #c3c4c7;
+  border-radius:999px;
+  background:#fff;
+  cursor:pointer;
+  font-weight:600;
+}
+.bb-scrubs__toggle-input:checked + .bb-scrubs__toggle-label{
+  border-color:#2271b1;
+  background:#edf5ff;
+  color:#0a4b78;
+}
+.bb-scrubs__toggle-input:focus-visible + .bb-scrubs__toggle-label{
+  outline:2px solid #2271b1;
+  outline-offset:2px;
+}
+.bb-scrubs__card{
+  display:none;
+  margin-top:12px;
+  padding:16px;
+  border:1px solid #dcdcde;
+  border-radius:8px;
+  background:#fff;
+}
+.bb-scrubs.is-active .bb-scrubs__card{display:block}
+.bb-scrubs__field{
+  display:grid;
+  grid-template-columns:140px minmax(0, 1fr);
+  gap:12px;
+  align-items:center;
+}
+.bb-scrubs__field + .bb-scrubs__field{margin-top:12px}
+.bb-scrubs__field label{font-weight:600}
+.bb-scrubs__field select{max-width:260px}
+.bb-scrubs__field .bb-inline-error{grid-column:2}
+#bb-color-rows{margin-top:12px;display:flex;flex-direction:column;gap:12px}
+.bb-color-row{padding:12px;border:1px solid #dcdcde;border-radius:6px;background:#fff;max-width:520px}
+.bb-color-row__header{font-weight:600;margin-bottom:8px}
+.bb-color-row__field{display:flex;align-items:center;gap:8px;margin:6px 0}
+.bb-color-row__field label{min-width:90px}
+.bb-color-preview{display:inline-flex;align-items:center;gap:8px;max-width:240px;min-width:0;vertical-align:middle}
+.bb-color-preview .bb-mockup-preview{
+  display:inline-flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  width:40px;
+  height:40px;
+  border:1px solid #dcdcde;
+  border-radius:4px;
+  overflow:hidden;
+  text-decoration:none;
+  background:#f6f7f7;
+}
+.bb-color-preview .bb-mockup-thumb{width:40px;height:40px;display:block;object-fit:cover}
+.bb-color-preview .bb-mockup-filename{color:#646970;text-decoration:none;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block}
+.bb-file-pill{display:inline-flex;align-items:center;gap:8px;vertical-align:middle}
+.bb-file-pill .bb-art-preview{
+  display:inline-flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  width:40px;
+  height:40px;
+  border:1px solid #dcdcde;
+  border-radius:4px;
+  overflow:hidden;
+  text-decoration:none;
+  background:#f6f7f7;
+}
+.bb-file-pill .bb-art-thumb{width:40px;height:40px;display:block;object-fit:cover}
+.bb-file-pill .bb-art-filename{color:#646970;text-decoration:none;max-width:320px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block}
+#bb-vendor-rows{margin-top:12px;display:flex;flex-direction:column;gap:12px}
+.bb-vendor-row{padding:12px;border:1px solid #dcdcde;border-radius:6px;background:#fff;max-width:520px}
+.bb-vendor-row__header{font-weight:600;margin-bottom:8px}
+.bb-vendor-row__field{display:flex;align-items:center;gap:8px;margin:6px 0}
+.bb-vendor-row__field label{min-width:90px}
+.bb-textarea{width:100%;max-width:640px;min-height:96px}
+@media (max-width:782px){
+  .form-table td, .form-table th{display:block;width:100%}
+  .form-table td{padding-left:0}
+  .bb-scrubs__field{grid-template-columns:1fr}
+  .bb-scrubs__field .bb-inline-error{grid-column:1}
+  .bb-color-row, .bb-vendor-row{max-width:100%}
+  .bb-color-preview{max-width:180px}
+  .bb-color-preview .bb-mockup-filename{max-width:130px}
+  .bb-file-pill .bb-art-filename{max-width:180px}
+}
