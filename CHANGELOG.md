@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.35] - 2026-09-17
+
+### Changes
+* chore(release): v1.5.34 (cbf993a)
+
+
+## [1.5.35] - 2026-08-17
+
+### Changes
+* Harden GitHub release update checks with API fallbacks, response logging, short failure caching, and release-asset validation.
+
+
 ## [1.5.34] - 2026-08-16
 
 ### Changes
