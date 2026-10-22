@@ -1,0 +1,29 @@
+.bb-bumblebee-panel .bb-location-check{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+.bb-bumblebee-panel .bb-print-locations{display:flex;flex-direction:column;gap:4px}
+.bb-bumblebee-panel .bb-location-name{min-width:120px}
+.bb-bumblebee-panel .bb-art-tools{display:none;align-items:center;gap:8px}
+.bb-bumblebee-panel .bb-location-check.is-checked .bb-art-tools{display:inline-flex}
+.bb-bumblebee-panel .bb-art-preview{
+  display:inline-flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  width:100px;
+  height:auto;
+  border:1px solid #dcdcde;
+  border-radius:4px;
+  overflow:visible;
+  text-decoration:none;
+  background-color:#f2f2f2;
+  background-image:
+    linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+    linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+    linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+  background-size:8px 8px;
+  background-position:0 0, 0 4px, 4px -4px, -4px 0;
+}
+.bb-bumblebee-panel .bb-art-thumb{width:100px;height:auto;display:block}
+.bb-bumblebee-panel .bb-art-filename{color:#646970;font-size:12px;text-decoration:none}
+.bb-bumblebee-panel .bb-art-error{color:#a40000;font-size:12px;margin-left:8px}
+.bb-tooltip{display:inline-block;margin-left:6px;color:#646970;cursor:help;vertical-align:text-top}
+.bb-tooltip:hover,.bb-tooltip:focus{color:#1d2327}
