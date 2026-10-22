@@ -1,5 +1,16 @@
 # Changelog
 
+## [Unreleased]
+
+## [1.53.8] - 2026-10-22
+
+### Changes
+* chore(release): v1.53.7 (ab02177)
+
+
+- Add a per-user choice of Media Library or Google Drive for mockup images.
+- Add Drive link selection and optional private-folder browsing, with local image caching and WooCommerce compatibility.
+
 ## [1.53.7] - 2026-10-22
 
 ### Changes
