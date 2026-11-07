@@ -1,0 +1,336 @@
+# Changelog
+
+## [Unreleased]
+
+## [1.53.10] - 2026-11-07
+
+### Changes
+* Release generated from local working tree
+
+* Add editable per-size regular prices for extended sizes in the product editor, applying each entered price across all color variations.
+* Use fixed dollar adjustments for newly created extended-size variations: +$2 for 2XL, +$4 for 3XL, and +$1 more for each size above 3XL.
+* Update Soundwave readiness to allow custom extended-size prices while checking that color variations of each size match.
+
+## [1.53.9] - 2026-10-22
+
+### Changes
+* chore(release): v1.53.8 (cc2ff62)
+* chore(release): v1.5.35 (5fad4c0)
+* chore(release): v1.5.34 (cbf993a)
+* chore(release): v1.5.33 (a7b6e44)
+* chore(release): v1.5.32 (c4281ce)
+* chore(release): v1.5.31 (51facdb)
+* chore(release): v1.5.30 (ff52119)
+* chore(release): v1.5.29 (16fb2bc)
+* chore(release): v1.5.28 (a9d7316)
+* chore(release): v1.5.27 (98ed98a)
+* chore(release): v1.5.26 (780166f)
+* chore(release): v1.5.25 (b54c205)
+* chore(release): v1.5.24 (eaacfcf)
+* chore(release): v1.5.23 (31d21b9)
+* chore(release): v1.5.22 (6348ff2)
+* chore(release): v1.5.21 (28e518b)
+* chore(release): v1.5.20 (562d9d5)
+* chore(release): v1.5.19 (a0e389c)
+* chore(release): v1.5.18 (fca15e4)
+* chore(release): v1.5.17 (db5b08c)
+* chore(release): v1.5.16 (e60d166)
+* chore(release): v1.5.15 (8723cc5)
+* chore(release): v1.5.14 (2174499)
+* chore(release): v1.5.13 (8a0e6ea)
+* chore(release): v1.5.12 (38b4b91)
+* chore(release): v1.5.10 (cf5052f)
+* chore(release): v1.5.9 (76ee00e)
+* chore(release): v1.5.8 (9f01826)
+* chore(release): v1.5.7 (03cc125)
+* chore(release): v1.5.5 (788c3af)
+* chore(release): v1.5.4 (455ba1d)
+* chore(release): v1.5.3 (df45a81)
+* chore(release): v1.5.2 (43ea6f7)
+* chore(release): v1.4.6 (83bc386)
+* chore(release): v1.4.5 (db31004)
+* chore(release): v1.4.4 (63cc347)
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
+## [1.53.8] - 2026-10-22
+
+### Changes
+* chore(release): v1.53.7 (ab02177)
+
+
+- Add a per-user choice of Media Library or Google Drive for mockup images.
+- Add Drive link selection and optional private-folder browsing, with local image caching and WooCommerce compatibility.
+
+## [1.53.7] - 2026-10-22
+
+### Changes
+* Release generated from local working tree
+
+
+## [1.5.31] - 2026-08-12
+
+### Changes
+* Release generated from local working tree
+
+
+## [1.5.30] - 2026-04-04
+
+### Changes
+* Release generated from local working tree
+
+
+## [1.5.29] - 2026-03-30
+
+### Changes
+* chore(release): v1.5.28 (a9d7316)
+* chore(release): v1.5.26 (780166f)
+* chore(release): v1.5.25 (b54c205)
+* chore(release): v1.5.24 (eaacfcf)
+* chore(release): v1.5.23 (31d21b9)
+* chore(release): v1.5.22 (6348ff2)
+* chore(release): v1.5.21 (28e518b)
+* chore(release): v1.5.20 (562d9d5)
+* chore(release): v1.5.19 (a0e389c)
+* chore(release): v1.5.18 (fca15e4)
+* chore(release): v1.5.17 (db5b08c)
+* chore(release): v1.5.16 (e60d166)
+* chore(release): v1.5.15 (8723cc5)
+* chore(release): v1.5.14 (2174499)
+* chore(release): v1.5.13 (8a0e6ea)
+* chore(release): v1.5.12 (38b4b91)
+* chore(release): v1.5.10 (cf5052f)
+* chore(release): v1.5.9 (76ee00e)
+* chore(release): v1.5.8 (9f01826)
+* chore(release): v1.5.7 (03cc125)
+* chore(release): v1.5.5 (788c3af)
+* chore(release): v1.5.4 (455ba1d)
+* chore(release): v1.5.3 (df45a81)
+* chore(release): v1.5.2 (43ea6f7)
+* chore(release): v1.4.6 (83bc386)
+* chore(release): v1.4.5 (db31004)
+* chore(release): v1.4.4 (63cc347)
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
+## [1.5.28] - 2026-03-22
+
+### Changes
+* chore(release): v1.5.27 (98ed98a)
+
+
+## [1.5.27] - 2026-03-22
+
+### Changes
+* Release generated from local working tree
+
+
+## [1.5.26] - 2026-03-17
+
+### Changes
+* chore(release): v1.5.25 (b54c205)
+
+
+## [1.5.25] - 2026-03-07
+
+### Changes
+* chore(release): v1.5.24 (eaacfcf)
+
+
+## [1.5.24] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.23 (31d21b9)
+
+
+## [1.5.23] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.22 (6348ff2)
+
+
+## [1.5.22] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.21 (28e518b)
+
+
+## [1.5.21] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.20 (562d9d5)
+
+
+## [1.5.20] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.19 (a0e389c)
+
+
+## [1.5.19] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.18 (fca15e4)
+
+
+## [1.5.18] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.17 (db5b08c)
+
+
+## [1.5.17] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.16 (e60d166)
+
+
+## [1.5.16] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.15 (8723cc5)
+
+
+## [1.5.15] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.14 (2174499)
+
+
+## [1.5.14] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.13 (8a0e6ea)
+
+
+## [1.5.13] - 2026-03-06
+
+### Changes
+* chore(release): v1.5.12 (38b4b91)
+
+
+## [1.5.12] - 2026-03-01
+
+### Changes
+* chore(release): v1.5.10 (cf5052f)
+
+
+## [1.5.10] - 2026-02-26
+
+### Changes
+* chore(release): v1.5.9 (76ee00e)
+
+
+## [1.5.9] - 2026-02-26
+
+### Changes
+* chore(release): v1.5.8 (9f01826)
+
+
+## [1.5.8] - 2026-02-26
+
+### Changes
+* chore(release): v1.5.7 (03cc125)
+
+
+## [1.5.7] - 2026-02-20
+
+### Changes
+* chore(release): v1.5.5 (788c3af)
+
+
+## [1.5.6] - 2026-02-20
+
+### Changes
+* Release generated from local working tree
+
+
+## [1.5.5] - 2026-02-05
+
+### Changes
+* chore(release): v1.5.4 (455ba1d)
+
+
+## [1.5.4] - 2026-02-04
+
+### Changes
+* chore(release): v1.5.3 (df45a81)
+* chore(release): v1.4.6 (83bc386)
+* chore(release): v1.4.5 (db31004)
+* chore(release): v1.4.4 (63cc347)
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
+## [1.5.3] - 2026-02-04
+
+### Changes
+* chore(release): v1.5.2 (43ea6f7)
+
+
+## [1.5.2] - 2026-02-04
+
+### Changes
+* Internal updates
+
+
+## [1.5.1] - 2026-02-03
+
+### Changes
+* Manual release (git unavailable)
+
+
+## [1.5.0] - 2026-02-03
+
+### Changes
+* Manual release (git unavailable)
+
+
+## [1.4.7] - 2026-02-02
+
+### Changes
+* Manual release (git unavailable)
+
+
+## [1.4.6] - 2025-12-12
+
+### Changes
+* chore(release): v1.4.5 (db31004)
+
+
+## [1.4.5] - 2025-12-01
+
+### Changes
+* chore(release): v1.4.4 (63cc347)
+
+
+## [1.4.4] - 2025-12-01
+
+### Changes
+* chore(release): v1.4.3 (6b162f6)
+* Re-establish main from live server (f5ea19a)
+
+
+## [1.4.3] - 2025-11-24
+
+### Changes
+* Re-establish main from live server (f5ea19a)
+
+
+## [1.4.1] - 2025-11-23
+
+### Changes
+* Internal updates
+
+
+## [1.3.1] - 2025-10-23
+
+### Changes
+* chore(release): v1.3.0 (caa5bf9)
+
+## 1.2.99 - 2025-10-17
+- Inline validation for **Price** (no JS alerts; consistent with other fields).
+- README expanded with updater, build, and feature documentation.
+- Added **GitHub updater** that checks `emkowale/bumblebee` releases and provides admin updates.
